@@ -5,6 +5,7 @@ import { useWallet } from "@/components/auth/providers/WalletProvider.js";
 import { useWalletUI } from "@/components/auth/providers/WalletUIProvider.js";
 import Image from "next/image";
 import web3 from "@/assets/icons/web3-icon.png";
+import phantom from "@/assets/icons/phantom-icon.png";
 
 export default function SelectWalletModal() {
 	const { providerDetected, wallets, wallet, setWallet, publicKey, logout } =
@@ -138,7 +139,7 @@ export default function SelectWalletModal() {
 									<div className="flex items-center justify-between w-full">
 										<div className="flex items-center justify-center">
 											<Image
-												src={phantom}
+												src={phantom.src}
 												alt="icon"
 												width={40}
 												height={40}
