@@ -1,6 +1,6 @@
 {
 	"name": "next-web3",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"license": "MIT",
 	"author": "Sam Larsen",
 	"description": "Next.js web3 application with DaisyUI and TailwindCSS styling",
