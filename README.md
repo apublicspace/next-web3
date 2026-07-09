@@ -1,6 +1,6 @@
 # Next Web3
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/apublicspace/next-web3/blob/master/LICENSE.md)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/sahelars/next-web3/blob/master/LICENSE.md)
 
 ### Next.js web3 application with DaisyUI and TailwindCSS styling
 
@@ -19,7 +19,7 @@
 Clone the repository:
 
 ```
-git clone https://github.com/apublicspace/next-web3.git
+git clone https://github.com/sahelars/next-web3.git
 ```
 
 Navigate into the project directory:

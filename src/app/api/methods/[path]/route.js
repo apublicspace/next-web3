@@ -2,7 +2,7 @@ import {
 	useSolana,
 	useConnection
 } from "@/components/blockchains/solana/core.js";
-import Utils from "@publicspace/crypto";
+import Utils from "@0xver/crypto";
 
 const mainnet = process.env.SOLANA_MAINNET_RPC_API;
 const devnet = process.env.SOLANA_DEVNET_RPC_API;

@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import { uint8Array } from "@/components/utils/encodings.js";
-import Auth from "@publicspace/crypto";
-import Utils from "@publicspace/crypto";
+import Auth from "@0xver/crypto";
+import Utils from "@0xver/crypto";
 import bs58 from "bs58";
 
 export default class AuthServer {
