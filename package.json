@@ -1,12 +1,12 @@
 {
 	"name": "next-web3",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"license": "MIT",
 	"author": "Sam Larsen",
 	"description": "Next.js web3 application with DaisyUI and TailwindCSS styling",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/apublicspace/next-web3"
+		"url": "https://github.com/sahelars/next-web3"
 	},
 	"scripts": {
 		"dev": "next dev",
@@ -16,7 +16,7 @@
 		"format": "prettier --use-tabs --trailing-comma 'none' --write ."
 	},
 	"dependencies": {
-		"@publicspace/crypto": "^1.0.1",
+		"@0xver/crypto": "^1.0.2",
 		"@solana/web3.js": "^1.95.3",
 		"bs58": "^6.0.0",
 		"next": "14.2.5",
