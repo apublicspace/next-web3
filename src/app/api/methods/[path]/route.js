@@ -1,6 +1,8 @@
-import useSolana from "@/components/blockchains/solana/useSolana.js";
+import {
+	useSolana,
+	useConnection
+} from "@/components/blockchains/solana/core.js";
 import Utils from "@publicspace/crypto";
-import { uint8Array } from "@/components/utils/encodings.js";
 
 const mainnet = process.env.SOLANA_MAINNET_RPC_API;
 const devnet = process.env.SOLANA_DEVNET_RPC_API;
@@ -13,12 +15,14 @@ export async function POST(req, { params }) {
 			const network = request.network;
 			const api =
 				network === "mainnet" ? mainnet : network === "devnet" && devnet;
+			const { NetworkConnection } = useSolana();
+			const connection = NetworkConnection({ api });
 			const {
 				getBalance,
 				requestAirdrop,
 				getLatestBlockhash,
 				confirmTransaction
-			} = useSolana(api);
+			} = useConnection(connection);
 
 			if (request.method === "getBalance") {
 				const data = await getBalance({ publicKey: request.publicKey });
@@ -30,7 +34,7 @@ export async function POST(req, { params }) {
 			if (request.method === "requestAirdrop") {
 				const data = await requestAirdrop({
 					publicKey: request.publicKey,
-					amount: request.amount
+					solAmount: request.amount
 				});
 				return new Response(Utils.response({ data }), {
 					headers: { "Content-Type": "application/json" }

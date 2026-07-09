@@ -7,6 +7,8 @@ import Login from "@/components/ui/buttons/Login.js";
 import PopUp from "@/components/ui/modals/PopUpModal.js";
 import Loading from "@/components/ui/graphics/Loading.js";
 import SelectWallet from "@/components/ui/buttons/SelectWallet.js";
+import Blink from "@/components/blockchains/solana/Blink.js";
+import Donate from "@/components/ui/buttons/Donate.js";
 
 export default function Lander() {
 	const { wallet, publicKey } = useWallet();
@@ -20,6 +22,12 @@ export default function Lander() {
 					<h1 className="sm:text-2xl text-lg font-bold">
 						Welcome to Next.js Web3
 					</h1>
+					<div className="h-5" />
+					<div className="w-[400px]">
+						<Blink url="https://solana-actions.vercel.app/api/actions/memo" />
+					</div>
+					<div className="h-5" />
+					<Donate amount={0.1} />
 					<div className="h-5" />
 					{!wallet && <SelectWallet />}
 					<div className="flex">

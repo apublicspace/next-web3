@@ -2,13 +2,19 @@
 
 import { useState } from "react";
 import { useWallet } from "@/components/auth/providers/WalletProvider.js";
-import useSolana from "@/components/blockchains/solana/useSolana.js";
+import {
+	useSolana,
+	useProvider
+} from "@/components/blockchains/solana/core.js";
 
-export default function Donate() {
+export default function Donate({ amount }) {
 	const { wallet, publicKey } = useWallet();
-	const { transferInstructions, createTransactionV0, signAndSendTransaction } =
-		useSolana();
-	const amount = 0.1;
+	const {
+		SystemProgramTransfer,
+		TransactionMessageV0,
+		CreateVersionedTransaction
+	} = useSolana();
+	const { signAndSendTransaction } = useProvider(wallet?.provider);
 	const defaultButton = `Donate ${amount} SOL`;
 	const [button, setButton] = useState(defaultButton);
 	const [disableButton, setDisableButton] = useState(false);
@@ -36,10 +42,10 @@ export default function Donate() {
 	};
 
 	async function runFrontendTransaction() {
-		const instructions = transferInstructions({
-			from: publicKey,
-			to: process.env.NEXT_PUBLIC_TEST_KEY,
-			amount
+		const instructions = SystemProgramTransfer({
+			fromPublicKey: publicKey,
+			toPublicKey: process.env.NEXT_PUBLIC_TEST_KEY,
+			solAmount: amount
 		});
 		handleButton("blockhash");
 		const getLatestBlockhashResponse = await fetch("/api/methods/solana", {
@@ -51,17 +57,15 @@ export default function Donate() {
 		});
 		const getLatestBlockhash = await getLatestBlockhashResponse.json();
 		if (getLatestBlockhash.ok) {
-			const blockhash = getLatestBlockhash.data.blockhash;
+			const recentBlockhash = getLatestBlockhash.data.blockhash;
 			const lastValidBlockHeight = getLatestBlockhash.data.lastValidBlockHeight;
-			const transactionV0 = createTransactionV0({
-				publicKey,
-				blockhash,
+			const messageV0 = TransactionMessageV0({
+				payerPublicKey: publicKey,
+				recentBlockhash,
 				instructions: [instructions]
 			});
-			const transaction = await signAndSendTransaction({
-				provider: wallet.provider,
-				transactionData: transactionV0
-			});
+			const txData = CreateVersionedTransaction({ message: messageV0 });
+			const transaction = await signAndSendTransaction(txData);
 			handleButton("transacting");
 			const transactionSignature = transaction.signature;
 			const confirmTransactionResponse = await fetch("/api/methods/solana", {
@@ -73,7 +77,7 @@ export default function Donate() {
 					network: "devnet",
 					method: "confirmTransaction",
 					transactionSignature,
-					blockhash,
+					blockhash: recentBlockhash,
 					lastValidBlockHeight
 				})
 			});
