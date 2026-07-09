@@ -19,7 +19,7 @@ export default function Modal() {
 
 	const copy = () => {
 		navigator.clipboard.writeText(
-			"git clone https://github.com/apublicspace/next-web3.git"
+			"git clone https://github.com/0xver/next-web3.git"
 		);
 		setCopied(true);
 		setCopiedKeyNumber(copiedKeyNumber + 1);
@@ -71,7 +71,7 @@ export default function Modal() {
 						onClick={copy}
 					>
 						<code className="text-nowrap overflow-scroll flex items-center justify-center w-full mr-[22px] py-2">
-							git clone https://github.com/apublicspace/next-web3.git
+							git clone https://github.com/0xver/next-web3.git
 						</code>
 						<div className="absolute right-8 h-[32.5px] text-neutral group-hover:text-neutral-content transition-colors px-[10px] flex items-center justify-center rounded-r-lg">
 							{!copied ? <IoCopySharp /> : <IoCheckmarkSharp />}
@@ -79,7 +79,7 @@ export default function Modal() {
 					</div>
 					<div className="h-4" />
 					<a
-						href="https://github.com/apublicspace/next-web3"
+						href="https://github.com/0xver/next-web3"
 						target="_blank"
 						rel="noopener noreferrer"
 						className="btn btn-neutral btn-sm"

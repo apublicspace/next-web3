@@ -1,5 +1,5 @@
 import useSolana from "@/components/blockchains/solana/useSolana.js";
-import Utils from "@publicspace/crypto";
+import Utils from "@0xver/crypto";
 import { uint8Array } from "@/components/utils/encodings.js";
 
 const mainnet = process.env.SOLANA_MAINNET_RPC_API;

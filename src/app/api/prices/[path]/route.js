@@ -1,4 +1,4 @@
-import Utils from "@publicspace/crypto";
+import Utils from "@0xver/crypto";
 
 export async function GET(req, { params }) {
 	try {
